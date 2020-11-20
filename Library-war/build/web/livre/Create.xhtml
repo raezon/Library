@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLivreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_issn}" for="issn" />
+                    <h:inputText id="issn" value="#{livreController.selected.issn}" title="#{bundle.CreateLivreTitle_issn}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_issn}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_titre}" for="titre" />
+                    <h:inputText id="titre" value="#{livreController.selected.titre}" title="#{bundle.CreateLivreTitle_titre}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_titre}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_nbrpage}" for="nbrpage" />
+                    <h:inputText id="nbrpage" value="#{livreController.selected.nbrpage}" title="#{bundle.CreateLivreTitle_nbrpage}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_nbrpage}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_domaine}" for="domaine" />
+                    <h:inputText id="domaine" value="#{livreController.selected.domaine}" title="#{bundle.CreateLivreTitle_domaine}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_domaine}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_image}" for="image" />
+                    <h:inputText id="image" value="#{livreController.selected.image}" title="#{bundle.CreateLivreTitle_image}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_image}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_resume}" for="resume" />
+                    <h:inputTextarea rows="4" cols="30" id="resume" value="#{livreController.selected.resume}" title="#{bundle.CreateLivreTitle_resume}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_resume}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreLabel_numAuteur}" for="numAuteur" />
+                    <h:selectOneMenu id="numAuteur" value="#{livreController.selected.numAuteur}" title="#{bundle.CreateLivreTitle_numAuteur}" required="true" requiredMessage="#{bundle.CreateLivreRequiredMessage_numAuteur}">
+                        <f:selectItems value="#{authorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{livreController.create}" value="#{bundle.CreateLivreSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{livreController.prepareList}" value="#{bundle.CreateLivreShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLivreIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

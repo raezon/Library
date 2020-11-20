@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditLivreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditLivreLabel_issn}" for="issn" />
+                    <h:inputText id="issn" value="#{livreController.selected.issn}" title="#{bundle.EditLivreTitle_issn}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_issn}"/>
+                    <h:outputLabel value="#{bundle.EditLivreLabel_titre}" for="titre" />
+                    <h:inputText id="titre" value="#{livreController.selected.titre}" title="#{bundle.EditLivreTitle_titre}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_titre}"/>
+                    <h:outputLabel value="#{bundle.EditLivreLabel_nbrpage}" for="nbrpage" />
+                    <h:inputText id="nbrpage" value="#{livreController.selected.nbrpage}" title="#{bundle.EditLivreTitle_nbrpage}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_nbrpage}"/>
+                    <h:outputLabel value="#{bundle.EditLivreLabel_domaine}" for="domaine" />
+                    <h:inputText id="domaine" value="#{livreController.selected.domaine}" title="#{bundle.EditLivreTitle_domaine}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_domaine}"/>
+                    <h:outputLabel value="#{bundle.EditLivreLabel_image}" for="image" />
+                    <h:inputText id="image" value="#{livreController.selected.image}" title="#{bundle.EditLivreTitle_image}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_image}"/>
+                    <h:outputLabel value="#{bundle.EditLivreLabel_resume}" for="resume" />
+                    <h:inputTextarea rows="4" cols="30" id="resume" value="#{livreController.selected.resume}" title="#{bundle.EditLivreTitle_resume}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_resume}"/>
+                    <h:outputLabel value="#{bundle.EditLivreLabel_numAuteur}" for="numAuteur" />
+                    <h:selectOneMenu id="numAuteur" value="#{livreController.selected.numAuteur}" title="#{bundle.EditLivreTitle_numAuteur}" required="true" requiredMessage="#{bundle.EditLivreRequiredMessage_numAuteur}">
+                        <f:selectItems value="#{authorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{livreController.update}" value="#{bundle.EditLivreSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditLivreViewLink}"/>
+                <br />
+                <h:commandLink action="#{livreController.prepareList}" value="#{bundle.EditLivreShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditLivreIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
